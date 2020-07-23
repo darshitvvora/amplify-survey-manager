@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Tag, Space } from 'antd';
+import { Table } from 'antd';
 import httpService from '../../services/http.service'
 
 
@@ -51,17 +51,24 @@ const columns = [
 
 
 const ResultComponent = (props) => {
+   const url = window.location.href;
+   let name = "id";
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]id' + name + '(=([^&#]*)|&|#|$)'),
+       results = regex.exec(url);
+    const surveyId = decodeURIComponent(results[2].replace(/\+/g, ' '));
   const [data, setData] = useState([])
   useEffect(() => {
     async function fetchData() {
       httpService
-        .get("https://w6eakr17z5.execute-api.ap-south-1.amazonaws.com/default/retrieveSentiments?SurveyId=survey1")
-        .then(({ data, success }) => {
-          if (success) {
-            setData(data);
-          }
+        .get("https://w6eakr17z5.execute-api.ap-south-1.amazonaws.com/default/retrieveSentiments",{"SurveyId":surveyId})
+        .then((res) => {
+           var val = JSON.parse(res.body);
+            setData(val);
+   
         })
         .catch((err) => {
+          console.log(err);
           setData([]);
         });
     }

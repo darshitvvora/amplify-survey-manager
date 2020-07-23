@@ -1,17 +1,21 @@
 import axios from 'axios';
 
-import session from './session.service';
+//import session from './session.service';
+
+
 
 class HTTPService {
   constructor() {
     this._instance = axios.create({
-     // baseURL: "https://88lar353fe.execute-api.ap-south-1.amazonaws.com/api/",
+      //baseURL: "https://w6eakr17z5.execute-api.ap-south-1.amazonaws.com/default",
     });
   }
 
-  setToken(token) {
-    this._instance.defaults.headers.common['authorization'] = token;
-  }
+  
+  
+ // setToken(token) {
+  //  this._instance.defaults.headers.common['authorization'] = token;
+ ///\ }
 
   formatError(err) {
     return { status: err.status, ...err.data };
@@ -40,8 +44,8 @@ class HTTPService {
 
 const httpService = new HTTPService();
 
-if (session.isLoggedIn) {
-  httpService.setToken(session.getItem('token'));
-}
+//if (session.isLoggedIn) {
+//  httpService.setToken(session.getItem('token'));
+//}
 
 export default httpService;
