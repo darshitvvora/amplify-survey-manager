@@ -1,12 +1,11 @@
 import axios from 'axios';
 
-import { API_URL } from '../constant/url.constant';
 import session from './session.service';
 
 class HTTPService {
   constructor() {
     this._instance = axios.create({
-      baseURL: API_URL,
+      baseURL: "https://88lar353fe.execute-api.ap-south-1.amazonaws.com/api/",
     });
   }
 

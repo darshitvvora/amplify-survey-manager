@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
+import httpService from '../../services/http.service'
 
 const { TextArea } = Input;
 
@@ -14,6 +15,9 @@ const tailLayout = {
 const SurveyComponent = (props) => {
   const onFinish = values => {
     console.log('Success:', values);
+    httpService.post("/survey",values).then(res => {
+      console.log("res");
+    }).catch(err => console.log(err));
   };
 
   const onFinishFailed = errorInfo => {
