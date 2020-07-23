@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, Tag, Space } from 'antd';
-
+import httpService from '../../services/http.service'
 
 
 const columns = [
@@ -48,42 +48,26 @@ const columns = [
 
 ];
 
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    email: 'john@yedu.com',
-    comment: 'New York No. 1 Lake Park',
-    sentiment: 'neutral',
-    positive: '50%',
-    negative: '40%',
-    neutral: '5%',
-    mixed: '5%',
-    },
-  {
-    key: '2',
-    name: 'Jim Green',
-    email: 'gim@gmail.com',
-    comment: 'London No. 1 Lake Park',
-    sentiment: 'negative',
-    positive: '50%',
-    negative: '40%',
-    neutral: '5%',
-    mixed: '5%',
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    email: 'joe@sonar.com',
-    comment: 'Sidney No. 1 Lake Park',
-    sentiment: 'positive',
-    positive: '50%',
-    negative: '40%',
-    neutral: '5%',
-    mixed: '5%',
-  },
-];
+
+
 const ResultComponent = (props) => {
+  const [data, setData] = useState([])
+  useEffect(() => {
+    async function fetchData() {
+      httpService
+        .get("https://w6eakr17z5.execute-api.ap-south-1.amazonaws.com/default/retrieveSentiments?SurveyId=survey1")
+        .then(({ data, success }) => {
+          if (success) {
+            setData(data);
+          }
+        })
+        .catch((err) => {
+          setData([]);
+        });
+    }
+  
+    fetchData();
+  }, []);
  
   return (
     <Table columns={columns} dataSource={data} />

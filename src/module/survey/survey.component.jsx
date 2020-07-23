@@ -15,7 +15,7 @@ const tailLayout = {
 const SurveyComponent = (props) => {
   const onFinish = values => {
     console.log('Success:', values);
-    httpService.post("/survey",values).then(res => {
+    httpService.post("https://5wagdbvitc.execute-api.ap-south-1.amazonaws.com/default/analyzeSentiment",values).then(res => {
       console.log("res");
     }).catch(err => console.log(err));
   };

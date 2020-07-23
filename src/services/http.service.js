@@ -5,7 +5,7 @@ import session from './session.service';
 class HTTPService {
   constructor() {
     this._instance = axios.create({
-      baseURL: "https://88lar353fe.execute-api.ap-south-1.amazonaws.com/api/",
+     // baseURL: "https://88lar353fe.execute-api.ap-south-1.amazonaws.com/api/",
     });
   }
 
