@@ -16,7 +16,8 @@ const SurveyComponent = (props) => {
   const onFinish = values => {
     console.log('Success:', values);
     httpService.post("https://5wagdbvitc.execute-api.ap-south-1.amazonaws.com/default/analyzeSentiment",values).then(res => {
-      console.log("res");
+        alert("Data submitted successfully");
+        window.location.reload();
     }).catch(err => console.log(err));
   };
 
@@ -55,7 +56,7 @@ const SurveyComponent = (props) => {
       </Form.Item>
       <Form.Item
         label="Feedback"
-        name="feedback"
+        name="comment"
         rules={[{ required: true, message: 'Please input your feedback!' }]}
       >
       <TextArea rows={4} />

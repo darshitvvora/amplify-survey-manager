@@ -51,12 +51,9 @@ const columns = [
 
 
 const ResultComponent = (props) => {
-   const url = window.location.href;
-   let name = "id";
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]id' + name + '(=([^&#]*)|&|#|$)'),
-       results = regex.exec(url);
-    const surveyId = decodeURIComponent(results[2].replace(/\+/g, ' '));
+  var urlParams = new URLSearchParams(window.location.search);
+
+  var surveyId = urlParams.get('id');
   const [data, setData] = useState([])
   useEffect(() => {
     async function fetchData() {
