@@ -18,7 +18,7 @@ function App() {
       <Route
         render={() => (
           <Redirect
-            to="/login"
+            to="/survey"
           />
         )}
       />
