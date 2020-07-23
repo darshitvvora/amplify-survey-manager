@@ -1,6 +1,8 @@
 import React from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
 
+const { TextArea } = Input;
+
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
@@ -9,7 +11,7 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-const LoginComponent = (props) => {
+const SurveyComponent = (props) => {
   const onFinish = values => {
     console.log('Success:', values);
   };
@@ -25,24 +27,34 @@ const LoginComponent = (props) => {
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
     >
+       <Form.Item
+        label="Survey ID"
+        name="surveyid"
+        rules={[{ required: true, message: 'Please input your survey id!' }]}
+      >
+        <Input />
+      </Form.Item>
       <Form.Item
-        label="Username"
-        name="username"
-        rules={[{ required: true, message: 'Please input your username!' }]}
+        label="Name"
+        name="name"
+        rules={[{ required: true, message: 'Please input your name!' }]}
       >
         <Input />
       </Form.Item>
 
       <Form.Item
-        label="Password"
-        name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}
+        label="Email"
+        name="email"
+        rules={[{ required: true, message: 'Please input your email!' }]}
       >
-        <Input.Password />
+        <Input />
       </Form.Item>
-
-      <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
+      <Form.Item
+        label="Feedback"
+        name="feedback"
+        rules={[{ required: true, message: 'Please input your feedback!' }]}
+      >
+      <TextArea rows={4} />
       </Form.Item>
 
       <Form.Item {...tailLayout}>
@@ -54,4 +66,4 @@ const LoginComponent = (props) => {
   );
 };
 
-export default LoginComponent;
+export default SurveyComponent;
