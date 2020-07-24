@@ -34,7 +34,7 @@ const SurveyComponent = (props) => {
     >
        <Form.Item
         label="Survey ID"
-        name="surveyid"
+        name="SurveyId"
         rules={[{ required: true, message: 'Please input your survey id!' }]}
       >
         <Input />
