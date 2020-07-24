@@ -60,8 +60,8 @@ const ResultComponent = (props) => {
       httpService
         .get("https://w6eakr17z5.execute-api.ap-south-1.amazonaws.com/default/retrieveSentiments",{"SurveyId":surveyId})
         .then((res) => {
-           var val = JSON.parse(res);
-            setData(val);
+           // var val = JSON.parse(res);
+            setData(res);
    
         })
         .catch((err) => {
